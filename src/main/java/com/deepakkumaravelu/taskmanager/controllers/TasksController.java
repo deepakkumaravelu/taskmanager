@@ -16,14 +16,14 @@ public class TasksController {
     public TasksController(TaskServices taskServices){
         this.taskServices=taskServices;
     }
-    @GetMapping("/gg")
+    @GetMapping("/")
     public ResponseEntity<List<TaskEntity>> getTasks(){
      var tasks=taskServices.getTasks();
      return ResponseEntity.ok(tasks);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskEntity>getTaskById(int id){
+    public ResponseEntity<TaskEntity>getTaskById(@PathVariable("id") Integer id){
         var task=taskServices.getTaskById(id);
         if(task==null){
             return ResponseEntity.notFound().build();
@@ -31,7 +31,7 @@ public class TasksController {
         return ResponseEntity.ok(task);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public ResponseEntity<TaskEntity>addTask(@RequestBody CreateTaskDTO body){
      var task=taskServices.addTask(body.getTitle(),body.getDescription(),body.getDeadline());
 

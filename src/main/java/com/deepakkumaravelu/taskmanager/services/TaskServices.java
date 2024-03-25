@@ -17,7 +17,7 @@ public TaskEntity addTask(String title,String description,String deadline){
     task.setId(taskId);
     task.setDescription(description);
     task.setTitle(title);
-    task.setDeadline(new Date(deadline));//validate date format
+//    task.setDeadline(new Date(deadline));//validate date format
     task.setCompleted(false);
     tasks.add(task);
     taskId++;
