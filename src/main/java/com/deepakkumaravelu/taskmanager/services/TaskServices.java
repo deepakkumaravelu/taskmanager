@@ -3,6 +3,8 @@ package com.deepakkumaravelu.taskmanager.services;
 import com.deepakkumaravelu.taskmanager.entities.TaskEntity;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,13 +13,13 @@ import java.util.Date;
 public class TaskServices {
     private ArrayList<TaskEntity> tasks=new ArrayList<>();
     private int taskId=1;
-
-public TaskEntity addTask(String title,String description,String deadline){
+    private final SimpleDateFormat deadlineFormatter=new SimpleDateFormat("yyyy-MM-dd");
+public TaskEntity addTask(String title,String description,String deadline) throws ParseException {
     TaskEntity task=new TaskEntity();
     task.setId(taskId);
     task.setDescription(description);
     task.setTitle(title);
-//    task.setDeadline(new Date(deadline));//validate date format
+    task.setDeadline(deadlineFormatter.parse(deadline));//validate date format
     task.setCompleted(false);
     tasks.add(task);
     taskId++;

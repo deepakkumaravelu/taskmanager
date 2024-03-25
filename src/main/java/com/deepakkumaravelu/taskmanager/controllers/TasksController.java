@@ -6,6 +6,7 @@ import com.deepakkumaravelu.taskmanager.services.TaskServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,7 @@ public class TasksController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<TaskEntity>addTask(@RequestBody CreateTaskDTO body){
+    public ResponseEntity<TaskEntity>addTask(@RequestBody CreateTaskDTO body) throws ParseException {
      var task=taskServices.addTask(body.getTitle(),body.getDescription(),body.getDeadline());
 
      return ResponseEntity.ok(task);
